@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    justifyContent: "space-evenly",
+    justifyContent: 'space-evenly',
     backgroundColor: '#EF8354',
   },
 
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     width: '100%',
     color: '#FFF',
     marginVertical: 10,
-    
+
     borderColor: '#FFF',
     borderRadius: 5,
-    borderWidth: 1
+    borderWidth: 1,
   },
 
   search: {

@@ -11,8 +11,17 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Navigator>
-        <Screen name="Home" component={Home} options={{headerShown: false}}/>
-        <Screen name="User" component={User} />
+        <Screen name="Home" component={Home} options={{headerShown: false}} />
+        <Screen
+          name="User"
+          component={User}
+          options={{
+            headerStyle: {backgroundColor: '#EF8354'},
+            title: null,
+            headerStatusBarHeight: 15,
+            headerTintColor: '#FFF',
+          }}
+        />
       </Navigator>
     </NavigationContainer>
   );
