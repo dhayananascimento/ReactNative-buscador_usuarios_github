@@ -40,6 +40,35 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000',
   },
+
+  tabContainer: {
+    elevation: 0,
+    paddingVertical: 10,
+    backgroundColor: '#FFF',
+
+    borderBottomWidth: 1,
+    borderBottomColor: '#BFC0C0',
+  },
+
+  activeText: {
+    textAlign: 
+    'center', 
+    color: '#EF8354'
+  },
+
+  tabText: {
+    textAlign: 'center', 
+    color: '#000'
+  },
+
+  background: {
+    backgroundColor: '#FFF'
+  },
+
+  divider: {
+    borderRightColor: '#BFC0C0',
+    borderRightWidth: 1,
+  }
 });
 
 export default styles;
