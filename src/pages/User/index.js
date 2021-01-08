@@ -5,12 +5,16 @@ import {Container, Tab, Tabs} from 'native-base';
 import styles from './styles';
 
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import Repos from '../../Components/Repos';
+import Followers from '../../Components/Followers';
+import Following from '../../Components/Following';
 
 export default function User({route}) {
   const {
     bio,
     type,
     name,
+    login,
     location,
     html_url,
     followers,
@@ -66,7 +70,7 @@ export default function User({route}) {
                   ? [styles.background, styles.divider]
                   : styles.background
               }>
-              <Text> Repositórios</Text>
+              <Repos login={login} />
             </Tab>
 
             {type == 'User' && (
@@ -76,7 +80,7 @@ export default function User({route}) {
                 activeTabStyle={[styles.background, styles.divider]}
                 tabStyle={[styles.background, styles.divider]}
                 heading={`${followers}\nSeguidores`}>
-                <Text> Seguidores</Text>
+                <Followers login={login} />
               </Tab>
             )}
 
@@ -87,7 +91,7 @@ export default function User({route}) {
                 activeTextStyle={styles.activeText}
                 textStyle={styles.tabText}
                 heading={`${following}\nSeguindo`}>
-                <Text> Seguindo</Text>
+                <Following login={login} />
               </Tab>
             )}
           </Tabs>
