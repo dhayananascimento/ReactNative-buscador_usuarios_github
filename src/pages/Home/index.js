@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   StatusBar,
   View,
@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-
 import api from '../../services/api';
+import {UserContext} from '../../providers/UserProvider';
 
 export default function Home({navigation}) {
+  const {userLogin, setUserLogin} = useContext(UserContext);
   const [user, setUser] = useState('');
 
   function handleSearch() {
@@ -32,21 +33,28 @@ export default function Home({navigation}) {
           public_repos,
         } = response.data;
 
-        const userData = {
+        setUserLogin({
+          login,
+          per_page: userLogin.per_page,
+          reposLimitPage: Math.ceil(public_repos / userLogin.per_page),
+          followersLimitPage: Math.ceil(followers / userLogin.per_page),
+          followingLimitPage: Math.ceil(following / userLogin.per_page),
+        });
+
+        navigation.navigate('UserPage', {
           bio,
           type,
           name,
-          login,
           location,
           html_url,
           followers,
           following,
           avatar_url,
           public_repos,
-        };
-        navigation.navigate('User', userData);
+        });
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error)
         Alert.alert('Atenção!', 'Usuário invalido.');
       });
   }
@@ -60,8 +68,8 @@ export default function Home({navigation}) {
       <View style={styles.searchWrapper}>
         <TextInput
           style={styles.input}
-          placeholder="Insira o usuário"
           onChangeText={setUser}
+          placeholder="Insira o usuário"
         />
         <TouchableOpacity
           activeOpacity={0.7}

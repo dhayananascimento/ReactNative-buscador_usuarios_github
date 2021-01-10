@@ -1,20 +1,26 @@
 import React from 'react';
-import {StatusBar, View, Text, Image, Linking} from 'react-native';
+import {
+  StatusBar,
+  View,
+  Text,
+  Image,
+  Linking,
+  TouchableOpacity,
+} from 'react-native';
 import {Container, Tab, Tabs} from 'native-base';
 
 import styles from './styles';
 
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import Repos from '../../Components/Repos';
-import Followers from '../../Components/Followers';
-import Following from '../../Components/Following';
+import UserProvider from '../../providers/UserProvider';
+// import Followers from '../../Components/Followers';
+// import Following from '../../Components/Following';
 
-export default function User({route}) {
+export default function UserPage({route}) {
   const {
     bio,
     type,
     name,
-    login,
     location,
     html_url,
     followers,
@@ -55,7 +61,6 @@ export default function User({route}) {
             tabBarBackgroundColor="#FFF"
             tabContainerStyle={styles.tabContainer}
             tabBarUnderlineStyle={{backgroundColor: 'transparent'}}>
-            
             <Tab
               textStyle={styles.tabText}
               activeTextStyle={styles.activeText}
@@ -70,17 +75,17 @@ export default function User({route}) {
                   ? [styles.background, styles.divider]
                   : styles.background
               }>
-              <Repos login={login} />
+              <Repos />
             </Tab>
 
             {type == 'User' && (
               <Tab
-              textStyle={styles.tabText}
-              activeTextStyle={styles.activeText}
+                textStyle={styles.tabText}
+                activeTextStyle={styles.activeText}
                 activeTabStyle={[styles.background, styles.divider]}
                 tabStyle={[styles.background, styles.divider]}
                 heading={`${followers}\nSeguidores`}>
-                <Followers login={login} />
+                {/* <Followers/> */}
               </Tab>
             )}
 
@@ -91,7 +96,7 @@ export default function User({route}) {
                 activeTextStyle={styles.activeText}
                 textStyle={styles.tabText}
                 heading={`${following}\nSeguindo`}>
-                <Following login={login} />
+                {/* <Following/> */}
               </Tab>
             )}
           </Tabs>

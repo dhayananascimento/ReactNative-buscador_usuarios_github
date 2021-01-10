@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
 
     borderWidth: 1,
-    borderColor: '#EF8354',
+    borderColor: '#BFC0C0',
     borderRadius: 5,
   },
 

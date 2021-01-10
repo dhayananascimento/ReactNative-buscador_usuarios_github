@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {View, Text} from 'react-native';
 
 import styles from './styles';
 
 import api from '../../services/api';
+import {UserContext} from '../../providers/UserProvider';
 
-export default function Following({login}) {
+export default function Following() {
+  const {userLogin} = useContext(UserContext);
   useEffect(() => {
-    api.get(`/${login}/repos`);
+    api.get(`/${userLogin.login}/repos`);
   }, []);
 
   return (

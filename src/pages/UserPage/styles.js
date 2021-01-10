@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
 
   background: {
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
   },
 
   divider: {
