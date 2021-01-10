@@ -9,26 +9,22 @@ export default function Repos() {
   const {userLogin} = useContext(UserContext);
 
   const [repos, setRepos] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
 
   function loadData() {
-    console.log(
-      `/${userLogin.login}/repos?per_page=${userLogin.per_page}&page=${currentPage}`,
-    );
     api
       .get(
         `/${userLogin.login}/repos?per_page=${userLogin.per_page}&page=${currentPage}`,
       )
       .then((response) => {
-        console.log('length on scrool: ', [...repos, ...response.data].length);
-        setRepos([...repos, ...response.data]);
-        // setIsLoading(false);
+        setRepos((prevRepos) => [...prevRepos, ...response.data]);
+        setIsLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         Alert.alert('Atenção', 'Algo deu errado ao buscar repositórios');
-        // setIsLoading(false);
+        setIsLoading(false);
       });
   }
 
@@ -44,7 +40,7 @@ export default function Repos() {
   }
 
   useEffect(() => {
-    // setIsLoading(true);
+    setIsLoading(true);
     loadData();
   }, [currentPage]);
 
@@ -56,7 +52,7 @@ export default function Repos() {
       keyExtractor={(item, index) => `${item.id}${index}`}
       onEndReached={loadMore}
       onEndReachedThreshold={0.1}
-      // ListFooterComponent={footer}
+      ListFooterComponent={footer}
       ListEmptyComponent={() => (
         <Text style={{color: '#000', marginVertical: 20}}>
           Não possui itens.

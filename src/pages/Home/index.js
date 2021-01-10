@@ -53,8 +53,7 @@ export default function Home({navigation}) {
           public_repos,
         });
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
         Alert.alert('Atenção!', 'Usuário invalido.');
       });
   }
