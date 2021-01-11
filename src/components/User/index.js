@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {View, Text, Linking, TouchableOpacity, Image} from 'react-native';
 
 import styles from './styles';
 
-export default function User({item}) {
+function User({item}) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -18,3 +18,5 @@ export default function User({item}) {
     </View>
   );
 }
+
+export default memo(User);

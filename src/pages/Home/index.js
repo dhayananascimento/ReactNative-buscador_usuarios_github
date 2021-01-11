@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 
 import styles from './styles';
@@ -15,6 +16,7 @@ import {UserContext} from '../../providers/UserProvider';
 export default function Home({navigation}) {
   const {userLogin, setUserLogin} = useContext(UserContext);
   const [user, setUser] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleSearch() {
     api
@@ -41,6 +43,8 @@ export default function Home({navigation}) {
           followingLimitPage: Math.ceil(following / userLogin.per_page),
         });
 
+        setIsLoading(false);
+
         navigation.navigate('UserPage', {
           bio,
           type,
@@ -55,6 +59,7 @@ export default function Home({navigation}) {
       })
       .catch(() => {
         Alert.alert('Atenção!', 'Usuário invalido.');
+        setIsLoading(false);
       });
   }
 
@@ -70,14 +75,19 @@ export default function Home({navigation}) {
           onChangeText={setUser}
           placeholder="Insira o usuário"
         />
+
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.search}
+          disabled={isLoading}
           onPress={() => {
+            setIsLoading(true);
             handleSearch();
           }}>
           <Text style={styles.searchText}>Buscar</Text>
         </TouchableOpacity>
+
+        {isLoading ? <ActivityIndicator color={'#FFF'} size="large" /> : null}
       </View>
     </View>
   );

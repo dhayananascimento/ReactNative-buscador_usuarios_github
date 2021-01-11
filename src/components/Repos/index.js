@@ -13,7 +13,8 @@ export default function Repos() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  function loadData() {
+  function loadData(mounted) {
+    if (mounted)
     api
       .get(
         `/${userLogin.login}/repos?per_page=${userLogin.per_page}&page=${currentPage}`,
@@ -40,8 +41,12 @@ export default function Repos() {
   }
 
   useEffect(() => {
+    let mounted = true;
+
     setIsLoading(true);
-    loadData();
+    loadData(mounted);
+
+    return () => (mounted = false);
   }, [currentPage]);
 
   return (

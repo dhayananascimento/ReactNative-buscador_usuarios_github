@@ -1,10 +1,9 @@
-import React from 'react';
-import {Text, Linking} from 'react-native';
-import {TouchableOpacity} from 'react-native';
+import React, {memo} from 'react';
+import {Text, Linking, TouchableOpacity} from 'react-native';
 
 import styles from './styles';
 
-export default function Repo({item}) {
+function Repo({item}) {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
@@ -17,3 +16,5 @@ export default function Repo({item}) {
     </TouchableOpacity>
   );
 }
+
+export default memo(Repo);

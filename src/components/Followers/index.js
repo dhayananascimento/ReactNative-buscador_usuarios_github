@@ -13,19 +13,20 @@ export default function Followers() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  function loadData() {
-    api
-      .get(
-        `/${userLogin.login}/followers?per_page=${userLogin.per_page}&page=${currentPage}`,
-      )
-      .then((response) => {
-        setFollowers((prevFollowers) => [...prevFollowers, ...response.data]);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        Alert.alert('Atenção', 'Algo deu errado ao buscar Seguidores');
-        setIsLoading(false);
-      });
+  function loadData(mounted) {
+    if (mounted)
+      api
+        .get(
+          `/${userLogin.login}/followers?per_page=${userLogin.per_page}&page=${currentPage}`,
+        )
+        .then((response) => {
+          setFollowers((prevFollowers) => [...prevFollowers, ...response.data]);
+          setIsLoading(false);
+        })
+        .catch(() => {
+          Alert.alert('Atenção', 'Algo deu errado ao buscar Seguidores');
+          setIsLoading(false);
+        });
   }
 
   function loadMore() {
@@ -42,8 +43,12 @@ export default function Followers() {
   }
 
   useEffect(() => {
+    let mounted = true;
+
     setIsLoading(true);
-    loadData();
+    loadData(mounted);
+
+    return () => (mounted = false);
   }, [currentPage]);
 
   return (
