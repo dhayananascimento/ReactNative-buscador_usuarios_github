@@ -51,14 +51,13 @@ const styles = StyleSheet.create({
   },
 
   activeText: {
-    textAlign: 
-    'center', 
-    color: '#EF8354'
+    textAlign: 'center',
+    color: '#EF8354',
   },
 
   tabText: {
-    textAlign: 'center', 
-    color: '#000'
+    textAlign: 'center',
+    color: '#000',
   },
 
   background: {
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
   divider: {
     borderRightColor: '#BFC0C0',
     borderRightWidth: 1,
-  }
+  },
 });
 
 export default styles;

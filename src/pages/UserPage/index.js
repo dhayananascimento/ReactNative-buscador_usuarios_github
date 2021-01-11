@@ -11,9 +11,8 @@ import {Container, Tab, Tabs} from 'native-base';
 
 import styles from './styles';
 
-import Repos from '../../Components/Repos';
-import UserProvider from '../../providers/UserProvider';
-// import Followers from '../../Components/Followers';
+import Repos from '../../components/Repos/index.js';
+import Followers from '../../components/Followers/index.js';
 // import Following from '../../Components/Following';
 
 export default function UserPage({route}) {
@@ -85,7 +84,7 @@ export default function UserPage({route}) {
                 activeTabStyle={[styles.background, styles.divider]}
                 tabStyle={[styles.background, styles.divider]}
                 heading={`${followers}\nSeguidores`}>
-                {/* <Followers/> */}
+                <Followers />
               </Tab>
             )}
 
