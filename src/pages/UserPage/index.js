@@ -13,7 +13,7 @@ import styles from './styles';
 
 import Repos from '../../components/Repos/index.js';
 import Followers from '../../components/Followers/index.js';
-// import Following from '../../Components/Following';
+import Following from '../../components/Following';
 
 export default function UserPage({route}) {
   const {
@@ -95,7 +95,7 @@ export default function UserPage({route}) {
                 activeTextStyle={styles.activeText}
                 textStyle={styles.tabText}
                 heading={`${following}\nSeguindo`}>
-                {/* <Following/> */}
+                <Following />
               </Tab>
             )}
           </Tabs>
